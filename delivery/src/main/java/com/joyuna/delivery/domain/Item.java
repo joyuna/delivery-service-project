@@ -12,4 +12,17 @@ public class Item {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
     }
+
+    public Long getItemId() {
+        return itemId;
+    }
+    public String getItemCategory() {
+        return itemCategory;
+    }
+    public String getItemName() {
+        return itemName;
+    }
+    public Integer getItemPrice() {
+        return itemPrice;
+    }
 }
