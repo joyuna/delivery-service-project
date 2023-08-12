@@ -1,5 +1,7 @@
 package com.joyuna.delivery.domain;
 
+import java.time.LocalDateTime;
+
 public class Item {
     private final Long itemId;
     private final String itemCategory;
@@ -7,14 +9,18 @@ public class Item {
     private final Integer itemPrice;
     private final Integer itemStock;
     private final String itemSaleStatus;
+    private final LocalDateTime createdDate;
+    private final LocalDateTime modifiedDate;
 
-    public Item(Long itemId, String itemCategory, String itemName, Integer itemPrice, Integer itemStock, String itemSaleStatus) {
+    public Item(Long itemId, String itemCategory, String itemName, Integer itemPrice, Integer itemStock, String itemSaleStatus, LocalDateTime createdDate, LocalDateTime modifiedDate) {
         this.itemId = itemId;
         this.itemCategory = itemCategory;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.itemStock = itemStock;
         this.itemSaleStatus = itemSaleStatus;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
 
     public Long getItemId() {
@@ -34,5 +40,11 @@ public class Item {
     }
     public String getItemSaleStatus() {
         return itemSaleStatus;
+    }
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
     }
 }
