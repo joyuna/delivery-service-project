@@ -10,3 +10,5 @@
 | 상품 가격    | itemPrice      | 상품의 가격입니다.                |
 | 상품 재고    | itemStock      | 상품의 재고입니다.                |
 | 상품 판매 상태 | itemSaleStatus | 상품의 판매 상태(판매, 품절)를 나타냅니다. |
+| 생성일      | createdDate    | 생성일입니다.                   |
+| 수정일      | modifiedDate   | 수정일입니다.                   |
