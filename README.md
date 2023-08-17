@@ -36,3 +36,6 @@
 
 ### 음식 API 클래스 다이어그램
 <img src="./img/음식API_클래스다이어그램.drawio.png" width="60%" height="60%"/>
+
+### 음식 API
+<img src="./img/item_erd.png" width="70%" height="70%"/>
