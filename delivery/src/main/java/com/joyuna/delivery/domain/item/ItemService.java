@@ -10,4 +10,9 @@ public class ItemService {
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
+
+    public Item findById(long id) {
+        return itemRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + id));
+    }
 }

@@ -1,50 +1,42 @@
-package com.joyuna.delivery.domain;
+package com.joyuna.delivery.domain.item;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Item {
-    private final Long itemId;
-    private final String itemCategory;
-    private final String itemName;
-    private final Integer itemPrice;
-    private final Integer itemStock;
-    private final String itemSaleStatus;
-    private final LocalDateTime createdDate;
-    private final LocalDateTime modifiedDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
+    private Long id;
+    @Column(name = "category", nullable = false)
+    private String category;
+    @Column(name = "name", nullable = false)
+    private String name;
+    @Column(name = "price", nullable = false)
+    private Integer price;
+    @Column(name= "stock", nullable = false)
+    private Integer stock;
+    @Column(name = "status", nullable = false)
+    private String saleStatus;
+    @Column(name = "created_date", nullable = false)
+    private LocalDateTime createdDate;
+    @Column(name = "modified_date", nullable = false)
+    private LocalDateTime modifiedDate;
 
-    public Item(Long itemId, String itemCategory, String itemName, Integer itemPrice, Integer itemStock, String itemSaleStatus, LocalDateTime createdDate, LocalDateTime modifiedDate) {
-        this.itemId = itemId;
-        this.itemCategory = itemCategory;
-        this.itemName = itemName;
-        this.itemPrice = itemPrice;
-        this.itemStock = itemStock;
-        this.itemSaleStatus = itemSaleStatus;
+    @Builder
+    public Item(Long id, String category, String name, Integer price, Integer stock, String saleStatus, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+        this.id = id;
+        this.category = category;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.saleStatus = saleStatus;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
-    }
-
-    public Long getItemId() {
-        return itemId;
-    }
-    public String getItemCategory() {
-        return itemCategory;
-    }
-    public String getItemName() {
-        return itemName;
-    }
-    public Integer getItemPrice() {
-        return itemPrice;
-    }
-    public Integer getItemStock() {
-        return itemStock;
-    }
-    public String getItemSaleStatus() {
-        return itemSaleStatus;
-    }
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-    public LocalDateTime getModifiedDate() {
-        return modifiedDate;
     }
 }
