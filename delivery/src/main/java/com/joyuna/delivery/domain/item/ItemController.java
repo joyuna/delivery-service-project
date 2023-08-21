@@ -15,7 +15,13 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ItemResponseDto> findById(@PathVariable long id) {
-        Item  item = itemService.findById(id);
+        Item item = itemService.findById(id);
+        return ResponseEntity.ok().body(new ItemResponseDto(item));
+    }
+
+    @PostMapping
+    public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemRequestDto itemRequestDto) {
+        Item item = itemService.save(itemRequestDto);
         return ResponseEntity.ok().body(new ItemResponseDto(item));
     }
 }

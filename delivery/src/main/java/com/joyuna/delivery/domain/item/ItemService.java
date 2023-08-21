@@ -15,4 +15,8 @@ public class ItemService {
         return itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + id));
     }
+
+    public Item save(ItemRequestDto itemRequestDto) {
+        return itemRepository.save(itemRequestDto.toEntity());
+    }
 }
