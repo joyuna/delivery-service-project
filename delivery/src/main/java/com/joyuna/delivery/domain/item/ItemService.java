@@ -23,8 +23,8 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Item save(ItemRequestDto itemRequestDto) {
-        return itemRepository.save(itemRequestDto.toEntity());
+    public Item save(ItemCreateRequestDto itemCreateRequestDto) {
+        return itemRepository.save(itemCreateRequestDto.toEntity());
     }
 
     @Transactional
