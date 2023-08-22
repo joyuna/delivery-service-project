@@ -33,4 +33,10 @@ public class ItemController {
         Item item = itemService.save(itemRequestDto);
         return ResponseEntity.ok().body(new ItemResponseDto(item));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ItemResponseDto> updateById(@PathVariable long id, @RequestBody ItemUpdateRequestDto itemUpdateRequestDto) {
+        Item updateItem = itemService.update(id, itemUpdateRequestDto);
+        return ResponseEntity.ok().body(new ItemResponseDto(updateItem));
+    }
 }
