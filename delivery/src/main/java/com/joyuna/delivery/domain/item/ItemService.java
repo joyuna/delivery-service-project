@@ -36,8 +36,7 @@ public class ItemService {
         return item;
     }
 
-    public ResponseEntity<Void> deleteById(long id) {
+    public void deleteById(long id) {
         itemRepository.deleteById(id);
-        return ResponseEntity.ok().build();
     }
 }
