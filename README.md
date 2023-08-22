@@ -15,24 +15,24 @@
 
 
 ### 음식(item) API
-| 요청         | HTTP Method | API                                   |
-|:-----------|:------------|:--------------------------------------|
-| 음식 전체 조회   | `GET`       | https://localhost:8080/items          |
-| 음식 단일 조회   | `GET`       | https://localhost:8080/items/{itemId} |
-| 음식 등록      | `POST`      | https://localhost:8080/items          |
-| 음식 수정      | `PATCH`     | https://localhost:8080/items/{itemId} |
-| 음식 전체 삭제   | `DELETE`    | https://localhost:8080/items          |
-| 음식 개별 삭제   | `DELETE`    | https://localhost:8080/items/{itemId} |
+| 요청         | HTTP Method | API                               |
+|:-----------|:------------|:----------------------------------|
+| 음식 전체 조회   | `GET`       | https://localhost:8080/items      |
+| 음식 단일 조회   | `GET`       | https://localhost:8080/items/{id} |
+| 음식 등록      | `POST`      | https://localhost:8080/items      |
+| 음식 수정      | `PATCH`     | https://localhost:8080/items/{id} |
+| 음식 전체 삭제   | `DELETE`    | https://localhost:8080/items      |
+| 음식 개별 삭제   | `DELETE`    | https://localhost:8080/items/{id} |
 
 ### 음식(item) + 식당(shop) API
-| 요청              | HTTP Method   | API                                                  |
-|:----------------|:--------------|:-----------------------------------------------------|
-| 한 식당의 음식 전체 조회  | `GET`         | https://localhost:8080/shops/{shopId}/items          |
-| 한 식당의 음식 단일 조회  | `GET`         | https://localhost:8080/shops/{shopId}/items/{itemId} |
-| 한 식당의 음식 등록     | `POST`        | https://localhost:8080/shops/{shopId}/items          |
-| 한 식당의 음식 수정     | `PATCH`       | https://localhost:8080/shops/{shopId}/items/{itemId} |
-| 한 식당의 음식 전체 삭제  | `DELETE`      | https://localhost:8080/shops/{shopId}/items          |
-| 한 식당의 음식 개별 삭제  | `DELETE`      | https://localhost:8080/shops/{shopId}/items/{itemId} |
+| 요청              | HTTP Method   | API                                          |
+|:----------------|:--------------|:---------------------------------------------|
+| 한 식당의 음식 전체 조회  | `GET`         | https://localhost:8080/shops/{id}/items      |
+| 한 식당의 음식 단일 조회  | `GET`         | https://localhost:8080/shops/{id}/items/{id} |
+| 한 식당의 음식 등록     | `POST`        | https://localhost:8080/shops/{id}/items      |
+| 한 식당의 음식 수정     | `PATCH`       | https://localhost:8080/shops/{id}/items/{id} |
+| 한 식당의 음식 전체 삭제  | `DELETE`      | https://localhost:8080/shops/{id}/items      |
+| 한 식당의 음식 개별 삭제  | `DELETE`      | https://localhost:8080/shops/{id}/items/{id} |
 
 ### 음식 API 클래스 다이어그램
 <img src="./img/음식API_클래스다이어그램.drawio.png" width="60%" height="60%"/>
