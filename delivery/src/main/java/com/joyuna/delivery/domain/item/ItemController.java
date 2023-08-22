@@ -45,4 +45,10 @@ public class ItemController {
         itemService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAll() {
+        itemService.deleteAll();
+        return ResponseEntity.ok().build();
+    }
 }
