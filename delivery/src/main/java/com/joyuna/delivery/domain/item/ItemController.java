@@ -39,4 +39,9 @@ public class ItemController {
         Item updateItem = itemService.update(id, itemUpdateRequestDto);
         return ResponseEntity.ok().body(new ItemResponseDto(updateItem));
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable long id) {
+        itemService.deleteById(id);
+    }
 }

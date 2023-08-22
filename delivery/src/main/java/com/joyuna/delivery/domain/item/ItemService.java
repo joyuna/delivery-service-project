@@ -1,6 +1,7 @@
 package com.joyuna.delivery.domain.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,5 +34,10 @@ public class ItemService {
                 .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + id));
         item.update(itemUpdateRequestDto.getCategory(), itemUpdateRequestDto.getName(), itemUpdateRequestDto.getPrice(), itemUpdateRequestDto.getStock(), itemUpdateRequestDto.getSaleStatus());
         return item;
+    }
+
+    public ResponseEntity<Void> deleteById(long id) {
+        itemRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
