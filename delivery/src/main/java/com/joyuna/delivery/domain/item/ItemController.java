@@ -21,26 +21,23 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ItemResponseDto> findById(@PathVariable long id) {
-        Item item = itemService.findById(id);
-        return ResponseEntity.ok().body(new ItemResponseDto(item));
+        return ResponseEntity.ok().body(itemService.findById(id));
     }
 
     @GetMapping
     public ResponseEntity<List<ItemResponseDto>> findAll() {
-        List<ItemResponseDto> items = itemService.findAll().stream().map(ItemResponseDto::new).collect(Collectors.toList());
+        List<ItemResponseDto> items = itemService.findAll();
         return ResponseEntity.ok().body(items);
     }
 
     @PostMapping
     public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemCreateRequestDto itemCreateRequestDto) {
-        Item item = itemService.save(itemCreateRequestDto);
-        return ResponseEntity.ok().body(new ItemResponseDto(item));
+        return ResponseEntity.ok().body(itemService.save(itemCreateRequestDto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ItemResponseDto> updateById(@PathVariable long id, @RequestBody ItemUpdateRequestDto itemUpdateRequestDto) {
-        Item updateItem = itemService.update(id, itemUpdateRequestDto);
-        return ResponseEntity.ok().body(new ItemResponseDto(updateItem));
+        return ResponseEntity.ok().body(itemService.update(id, itemUpdateRequestDto));
     }
 
     @DeleteMapping("/{id}")
