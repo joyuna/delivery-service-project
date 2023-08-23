@@ -1,5 +1,6 @@
-package com.joyuna.delivery.domain.item;
+package com.joyuna.delivery.domain.item.dto;
 
+import com.joyuna.delivery.domain.item.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

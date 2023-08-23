@@ -1,10 +1,8 @@
-package com.joyuna.delivery.domain.item;
+package com.joyuna.delivery.domain.item.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
