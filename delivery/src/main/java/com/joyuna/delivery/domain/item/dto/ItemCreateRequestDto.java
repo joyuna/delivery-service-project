@@ -22,14 +22,11 @@ public class ItemCreateRequestDto {
 
     public Item toEntity() {
         return Item.builder()
-                .id(id)
                 .category(category)
                 .name(name)
                 .price(price)
                 .stock(stock)
                 .saleStatus(saleStatus)
-                .createdDate(createdDate)
-                .modifiedDate(modifiedDate)
                 .build();
     }
 }

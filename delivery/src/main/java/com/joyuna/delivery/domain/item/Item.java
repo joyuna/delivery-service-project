@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
+    @Column(name = "item_id", updatable = false)
     private Long id;
     @Column(name = "category", nullable = false)
     private String category;
@@ -35,15 +35,12 @@ public class Item {
     private LocalDateTime modifiedDate;
 
     @Builder
-    public Item(Long id, String category, String name, Integer price, Integer stock, String saleStatus, LocalDateTime createdDate, LocalDateTime modifiedDate) {
-        this.id = id;
+    public Item(String category, String name, Integer price, Integer stock, String saleStatus) {
         this.category = category;
         this.name = name;
         this.price = price;
         this.stock = stock;
         this.saleStatus = saleStatus;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
     }
 
     public void update(String category, String name, Integer price, Integer stock, String saleStatus) {
