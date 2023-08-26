@@ -1,6 +1,5 @@
 package com.joyuna.delivery.domain.order;
 
-import com.joyuna.delivery.domain.orderItem.OrderItem;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -48,10 +47,11 @@ public class Order {
     private LocalDateTime modifiedDate;
 
     @Builder
-    public Order(String receiverName, String receiverTel, String receiverAddress, String orderStatus) {
+    public Order(String receiverName, String receiverTel, String receiverAddress, String orderStatus, List<OrderItem> orderItems) {
         this.receiverName = receiverName;
         this.receiverTel = receiverTel;
         this.receiverAddress = receiverAddress;
         this.orderStatus = orderStatus;
+        this.orderItems = orderItems;
     }
 }
