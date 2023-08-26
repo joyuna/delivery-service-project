@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,6 +19,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "orders")
+@DynamicInsert
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,12 +37,13 @@ public class Order {
     private String receiverAddress;
 
     @Column(name = "status", nullable = false)
+    @ColumnDefault("주문 요청")
     private String orderStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @Column(name = "create_date", nullable = false, updatable = false)
+    @Column(name = "created_date", nullable = false, updatable = false)
     @CreatedDate
     private LocalDateTime createdDate;
 
@@ -47,11 +52,11 @@ public class Order {
     private LocalDateTime modifiedDate;
 
     @Builder
-    public Order(String receiverName, String receiverTel, String receiverAddress, String orderStatus, List<OrderItem> orderItems) {
+    public Order(String receiverName, String receiverTel, String receiverAddress, List<OrderItem> orderItems) {
         this.receiverName = receiverName;
         this.receiverTel = receiverTel;
         this.receiverAddress = receiverAddress;
-        this.orderStatus = orderStatus;
+        this.orderStatus = "주문 요청";
         this.orderItems = orderItems;
     }
 }
