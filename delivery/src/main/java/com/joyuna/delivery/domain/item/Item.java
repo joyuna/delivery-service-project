@@ -43,6 +43,10 @@ public class Item {
         this.saleStatus = saleStatus;
     }
 
+    public Item(Long id) {
+        this.id = id;
+    }
+
     public void update(String category, String name, Integer price, Integer stock, String saleStatus) {
         this.category = category;
         this.name = name;
