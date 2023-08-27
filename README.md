@@ -1,6 +1,49 @@
 # delivery-service-project 
 배달 서비스 프로젝트입니다.
 
+### 프로젝트 구조
+```shell
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── joyuna
+│   │           └── delivery
+│   │               ├── DeliveryApplication.java
+│   │               └── domain
+│   │                   ├── item
+│   │                   │   ├── Item.java
+│   │                   │   ├── ItemController.java
+│   │                   │   ├── ItemRepository.java
+│   │                   │   ├── ItemService.java
+│   │                   │   └── dto
+│   │                   │       ├── ItemCreateRequestDto.java
+│   │                   │       ├── ItemResponseDto.java
+│   │                   │       └── ItemUpdateRequestDto.java
+│   │                   └── order
+│   │                       ├── Order.java
+│   │                       ├── OrderController.java
+│   │                       ├── OrderItem.java
+│   │                       ├── OrderItemRepository.java
+│   │                       ├── OrderRepository.java
+│   │                       ├── OrderService.java
+│   │                       └── dto
+│   │                           ├── OrderItemRequestDto.java
+│   │                           ├── OrderRequestDto.java
+│   │                           ├── OrderResponseDto.java
+│   │                           ├── PriceRequestDto.java
+│   │                           └── PriceResponseDto.java
+│   └── resources
+│       ├── application.yml
+│       ├── static
+│       └── templates
+└── test
+    └── java
+        └── com
+            └── joyuna
+                └── delivery
+                    └── DeliveryApplicationTests.java
+```
+
 ### ItemEntity(음식 엔티티)
 | 한글명      | 영문명          | 설명                                                  |
 |:---------|:-------------|:----------------------------------------------------|
