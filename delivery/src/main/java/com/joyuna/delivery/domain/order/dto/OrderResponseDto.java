@@ -9,9 +9,9 @@ import java.util.List;
 
 @Getter
 public class OrderResponseDto {
-    private final Long id;
+    private final Long orderId;
     private final List<OrderItem> orderItemList;
-//    private final Integer totalPrice;
+    private final Integer totalPrice;
     private final String receiverName;
     private final String receiverTel;
     private final String receiverAddress;
@@ -20,9 +20,15 @@ public class OrderResponseDto {
     private final LocalDateTime modifiedDate;
 
     public OrderResponseDto(Order order) {
-        this.id = order.getId();
+        this.orderId = order.getId();
         this.orderItemList = order.getOrderItemList();
-//        this.totalPrice = order.getTotalPrice;
+
+        int totalOrderPrice = 0;
+        for(OrderItem orderItem : orderItemList) {
+            totalOrderPrice += orderItem.getOrderPrice();
+        }
+
+        this.totalPrice = totalOrderPrice;
         this.receiverName = order.getReceiverName();
         this.receiverTel = order.getReceiverTel();
         this.receiverAddress = order.getReceiverAddress();

@@ -22,19 +22,20 @@ public class OrderRequestDto {
 
     public Order toEntity(List<PriceResponseDto> priceListResponseDto) {
         List<OrderItem> orderItemList = new ArrayList<>();
+        Order order = Order.builder()
+                .receiverName(receiverName)
+                .receiverTel(receiverTel)
+                .receiverAddress(receiverAddress)
+                .build();
         for(OrderItemRequestDto orderItemDto : orderItemListDto) {
             for(PriceResponseDto priceResponseDto : priceListResponseDto) {
                 if(orderItemDto.getItemId().equals(priceResponseDto.getItemId())) {
-                    OrderItem orderItem = orderItemDto.toEntity(priceResponseDto.getPrice());
+                    OrderItem orderItem = orderItemDto.toEntity(order, priceResponseDto.getPrice());
                     orderItemList.add(orderItem);
                 }
             }
         }
-        return Order.builder()
-                .receiverName(receiverName)
-                .receiverTel(receiverTel)
-                .receiverAddress(receiverAddress)
-                .orderItemList(orderItemList)
-                .build();
+        order.setOrderItemList(orderItemList);
+        return order;
     }
 }

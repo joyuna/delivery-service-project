@@ -1,5 +1,6 @@
 package com.joyuna.delivery.domain.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,6 +41,7 @@ public class Order {
     @ColumnDefault("주문 요청")
     private String orderStatus;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItemList = new ArrayList<>();
 
@@ -57,6 +59,10 @@ public class Order {
         this.receiverTel = receiverTel;
         this.receiverAddress = receiverAddress;
         this.orderStatus = "주문 요청";
+        this.orderItemList = orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
         this.orderItemList = orderItemList;
     }
 }
