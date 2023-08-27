@@ -5,18 +5,21 @@ import com.joyuna.delivery.domain.order.OrderItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class OrderItemRequestDto {
     private Long itemId;
     private Integer count;
 
-    public OrderItem toEntity() {
+    public OrderItem toEntity(int itemPrice) {
         return OrderItem.builder()
                 .item(new Item(itemId))
                 .count(count)
+                .orderPrice(itemPrice * count)
                 .build();
     }
 }

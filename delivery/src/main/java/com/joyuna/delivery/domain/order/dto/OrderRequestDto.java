@@ -5,6 +5,7 @@ import com.joyuna.delivery.domain.order.OrderItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,23 +13,28 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class OrderRequestDto {
-    private List<OrderItemRequestDto> orderItemsDto;
+    private List<OrderItemRequestDto> orderItemListDto;
     private String receiverName;
     private String receiverTel;
     private String receiverAddress;
 
-    public Order toEntity() {
-        List<OrderItem> orderItems = new ArrayList<>();
-        for(OrderItemRequestDto orderItemDto : orderItemsDto) {
-            OrderItem orderItem = orderItemDto.toEntity();
-            orderItems.add(orderItem);
+    public Order toEntity(List<PriceResponseDto> priceListResponseDto) {
+        List<OrderItem> orderItemList = new ArrayList<>();
+        for(OrderItemRequestDto orderItemDto : orderItemListDto) {
+            for(PriceResponseDto priceResponseDto : priceListResponseDto) {
+                if(orderItemDto.getItemId().equals(priceResponseDto.getItemId())) {
+                    OrderItem orderItem = orderItemDto.toEntity(priceResponseDto.getPrice());
+                    orderItemList.add(orderItem);
+                }
+            }
         }
         return Order.builder()
                 .receiverName(receiverName)
                 .receiverTel(receiverTel)
                 .receiverAddress(receiverAddress)
-                .orderItems(orderItems)
+                .orderItemList(orderItemList)
                 .build();
     }
 }

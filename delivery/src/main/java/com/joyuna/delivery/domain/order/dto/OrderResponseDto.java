@@ -2,13 +2,15 @@ package com.joyuna.delivery.domain.order.dto;
 
 import com.joyuna.delivery.domain.order.Order;
 import com.joyuna.delivery.domain.order.OrderItem;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Getter
 public class OrderResponseDto {
     private final Long id;
-    private final List<OrderItem> orderItems;
+    private final List<OrderItem> orderItemList;
 //    private final Integer totalPrice;
     private final String receiverName;
     private final String receiverTel;
@@ -19,7 +21,7 @@ public class OrderResponseDto {
 
     public OrderResponseDto(Order order) {
         this.id = order.getId();
-        this.orderItems = order.getOrderItems();
+        this.orderItemList = order.getOrderItemList();
 //        this.totalPrice = order.getTotalPrice;
         this.receiverName = order.getReceiverName();
         this.receiverTel = order.getReceiverTel();

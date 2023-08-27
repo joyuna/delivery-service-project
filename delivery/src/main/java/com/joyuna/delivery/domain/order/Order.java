@@ -41,7 +41,7 @@ public class Order {
     private String orderStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderItem> orderItemList = new ArrayList<>();
 
     @Column(name = "created_date", nullable = false, updatable = false)
     @CreatedDate
@@ -52,11 +52,11 @@ public class Order {
     private LocalDateTime modifiedDate;
 
     @Builder
-    public Order(String receiverName, String receiverTel, String receiverAddress, List<OrderItem> orderItems) {
+    public Order(String receiverName, String receiverTel, String receiverAddress, List<OrderItem> orderItemList) {
         this.receiverName = receiverName;
         this.receiverTel = receiverTel;
         this.receiverAddress = receiverAddress;
         this.orderStatus = "주문 요청";
-        this.orderItems = orderItems;
+        this.orderItemList = orderItemList;
     }
 }
