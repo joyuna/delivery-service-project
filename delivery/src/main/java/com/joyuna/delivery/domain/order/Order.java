@@ -21,7 +21,6 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "orders")
-@DynamicInsert
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +37,6 @@ public class Order {
     private String receiverAddress;
 
     @Column(name = "status", nullable = false)
-    @ColumnDefault("주문 요청")
     private String orderStatus;
 
     @JsonIgnore
