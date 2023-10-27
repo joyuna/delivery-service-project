@@ -24,30 +24,30 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id", updatable = false)
+    @Column(name = "order_id",updatable = false)
     private Long id;
 
-    @Column(name = "receiver_name", nullable = false)
+    @Column(nullable = false)
     private String receiverName;
 
-    @Column(name ="receiver_tel", nullable = false)
+    @Column(nullable = false)
     private String receiverTel;
 
-    @Column(name ="receiver_address", nullable = false)
+    @Column(nullable = false)
     private String receiverAddress;
 
-    @Column(name = "status", nullable = false)
+    @Column(nullable = false)
     private String orderStatus;
 
     @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItemList = new ArrayList<>();
 
-    @Column(name = "created_date", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     @CreatedDate
     private LocalDateTime createdDate;
 
-    @Column(name = "modified_date", nullable = false)
+    @Column(nullable = false)
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
