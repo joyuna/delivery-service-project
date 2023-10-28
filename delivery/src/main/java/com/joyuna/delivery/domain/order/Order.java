@@ -36,8 +36,9 @@ public class Order {
     @Column(nullable = false)
     private String receiverAddress;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String orderStatus;
+    private OrderStatus orderStatus;
 
     @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
@@ -56,7 +57,7 @@ public class Order {
         this.receiverName = receiverName;
         this.receiverTel = receiverTel;
         this.receiverAddress = receiverAddress;
-        this.orderStatus = "주문 요청";
+        this.orderStatus = OrderStatus.ORDERED;
         this.orderItemList = orderItemList;
     }
 
