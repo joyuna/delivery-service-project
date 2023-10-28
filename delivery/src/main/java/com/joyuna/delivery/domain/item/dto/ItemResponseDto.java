@@ -1,6 +1,7 @@
 package com.joyuna.delivery.domain.item.dto;
 
 import com.joyuna.delivery.domain.item.Item;
+import com.joyuna.delivery.domain.item.ItemSaleStatus;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ public class ItemResponseDto {
     private final String name;
     private final Integer price;
     private final Integer stock;
-    private final String saleStatus;
+    private final ItemSaleStatus saleStatus;
     private final LocalDateTime createdDate;
     private final LocalDateTime modifiedDate;
 

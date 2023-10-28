@@ -16,7 +16,6 @@ public class ItemCreateRequestDto {
     private String name;
     private Integer price;
     private Integer stock;
-    private String saleStatus;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
@@ -26,7 +25,6 @@ public class ItemCreateRequestDto {
                 .name(name)
                 .price(price)
                 .stock(stock)
-                .saleStatus(saleStatus)
                 .build();
     }
 }

@@ -1,5 +1,6 @@
 package com.joyuna.delivery.domain.item.dto;
 
+import com.joyuna.delivery.domain.item.ItemSaleStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +13,5 @@ public class ItemUpdateRequestDto {
     private String name;
     private Integer price;
     private Integer stock;
-    private String saleStatus;
+    private ItemSaleStatus saleStatus;
 }

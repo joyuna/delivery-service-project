@@ -30,8 +30,9 @@ public class Item {
     @Column(nullable = false)
     private Integer stock;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private String saleStatus;
+    private ItemSaleStatus saleStatus;
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
@@ -42,19 +43,19 @@ public class Item {
     private LocalDateTime modifiedDate;
 
     @Builder
-    public Item(String category, String name, Integer price, Integer stock, String saleStatus) {
+    public Item(String category, String name, Integer price, Integer stock) {
         this.category = category;
         this.name = name;
         this.price = price;
         this.stock = stock;
-        this.saleStatus = saleStatus;
+        this.saleStatus = ItemSaleStatus.NORMAL;
     }
 
     public Item(Long id) {
         this.id = id;
     }
 
-    public void update(String category, String name, Integer price, Integer stock, String saleStatus) {
+    public void update(String category, String name, Integer price, Integer stock, ItemSaleStatus saleStatus) {
         this.category = category;
         this.name = name;
         this.price = price;
