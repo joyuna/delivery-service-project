@@ -42,7 +42,7 @@ public class ItemService {
     public ItemResponseDto update(long id, ItemUpdateRequestDto itemUpdateRequestDto) {
         Item item = itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + id));
-        item.update(itemUpdateRequestDto.getCategory(), itemUpdateRequestDto.getName(), itemUpdateRequestDto.getPrice(), itemUpdateRequestDto.getStock(), itemUpdateRequestDto.getSaleStatus());
+        item.update(ItemCategory.valueOf(itemUpdateRequestDto.getCategory()), itemUpdateRequestDto.getName(), itemUpdateRequestDto.getPrice(), itemUpdateRequestDto.getStock(), itemUpdateRequestDto.getSaleStatus());
         return new ItemResponseDto(item);
     }
 

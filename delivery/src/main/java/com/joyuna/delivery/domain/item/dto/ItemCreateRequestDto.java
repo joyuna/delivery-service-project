@@ -1,6 +1,7 @@
 package com.joyuna.delivery.domain.item.dto;
 
 import com.joyuna.delivery.domain.item.Item;
+import com.joyuna.delivery.domain.item.ItemCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class ItemCreateRequestDto {
 
     public Item toEntity() {
         return Item.builder()
-                .category(category)
+                .category(ItemCategory.valueOf(category))
                 .name(name)
                 .price(price)
                 .stock(stock)
