@@ -1,52 +1,53 @@
 package com.joyuna.delivery.domain.item;
 
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import com.joyuna.delivery.domain.common.BaseTimeEntity;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EntityListeners(AuditingEntityListener.class)
-public class Item {
+public class Item extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
+    @Column(name = "item_id",updatable = false)
     private Long id;
-    @Column(name = "category", nullable = false)
-    private String category;
-    @Column(name = "name", nullable = false)
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ItemCategory category;
+
+    @Column(nullable = false)
     private String name;
-    @Column(name = "price", nullable = false)
+
+    @Column(nullable = false)
     private Integer price;
-    @Column(name= "stock", nullable = false)
+
+    @Column(nullable = false)
     private Integer stock;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private String saleStatus;
-    @Column(name = "created_date", nullable = false, updatable = false)
-    @CreatedDate
-    private LocalDateTime createdDate;
-    @Column(name = "modified_date", nullable = false)
-    @LastModifiedDate
-    private LocalDateTime modifiedDate;
+    private ItemSaleStatus saleStatus;
 
     @Builder
-    public Item(Long id, String category, String name, Integer price, Integer stock, String saleStatus, LocalDateTime createdDate, LocalDateTime modifiedDate) {
-        this.id = id;
+    public Item(ItemCategory category, String name, Integer price, Integer stock) {
         this.category = category;
         this.name = name;
         this.price = price;
         this.stock = stock;
-        this.saleStatus = saleStatus;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
+        this.saleStatus = ItemSaleStatus.NORMAL;
     }
 
-    public void update(String category, String name, Integer price, Integer stock, String saleStatus) {
+    public Item(Long id) {
+        this.id = id;
+    }
+
+    public void update(ItemCategory category, String name, Integer price, Integer stock, ItemSaleStatus saleStatus) {
         this.category = category;
         this.name = name;
         this.price = price;
