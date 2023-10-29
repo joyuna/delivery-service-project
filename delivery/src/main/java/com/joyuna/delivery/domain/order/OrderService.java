@@ -23,10 +23,12 @@ public class OrderService {
 
     public OrderResponseDto save(OrderRequestDto orderRequestDto) {
         PriceRequestDto priceRequestDto = new PriceRequestDto(orderRequestDto.getOrderItemListDto());
-        List<PriceResponseDto> priceListResponseDto =  itemService.getPriceOrderItem(priceRequestDto);
+        List<PriceResponseDto> priceListResponseDto = itemService.getPriceOrderItem(priceRequestDto);
         Order newOrder = orderRequestDto.toEntity(priceListResponseDto);
+        
         orderRepository.save(newOrder);
         orderItemRepository.saveAll(newOrder.getOrderItemList());
+
         return new OrderResponseDto(newOrder);
     }
 }
