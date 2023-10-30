@@ -35,6 +35,7 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String tel;
 
+    @Column(nullable = false)
     @ColumnDefault("'N'")
     private String deletedYn;
 
