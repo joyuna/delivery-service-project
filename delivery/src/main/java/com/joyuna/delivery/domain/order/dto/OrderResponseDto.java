@@ -13,7 +13,7 @@ public class OrderResponseDto {
     private final Long orderId;
     private final List<OrderItem> orderItemList;
     private final Integer totalPrice;
-    private final String receiverName;
+//    private final String receiverName;
     private final String receiverTel;
     private final String receiverAddress;
     private final OrderStatus orderStatus;
@@ -30,7 +30,7 @@ public class OrderResponseDto {
         }
 
         this.totalPrice = totalOrderPrice;
-        this.receiverName = order.getReceiverName();
+//        this.receiverName = order.getReceiverName();
         this.receiverTel = order.getReceiverTel();
         this.receiverAddress = order.getReceiverAddress();
         this.orderStatus = order.getOrderStatus();

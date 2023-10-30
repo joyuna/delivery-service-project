@@ -1,5 +1,6 @@
 package com.joyuna.delivery.domain.order.dto;
 
+import com.joyuna.delivery.domain.member.Member;
 import com.joyuna.delivery.domain.order.Order;
 import com.joyuna.delivery.domain.order.OrderItem;
 import lombok.AllArgsConstructor;
@@ -13,15 +14,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderRequestDto {
+//    private Member member;
+
     private List<OrderItemRequestDto> orderItemListDto;
-    private String receiverName;
     private String receiverTel;
     private String receiverAddress;
 
     public Order toEntity(List<PriceResponseDto> priceListResponseDto) {
         List<OrderItem> orderItemList = new ArrayList<>();
         Order order = Order.builder()
-                .receiverName(receiverName)
+//                .receiverName(receiverName)
                 .receiverTel(receiverTel)
                 .receiverAddress(receiverAddress)
                 .build();
