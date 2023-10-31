@@ -4,13 +4,13 @@ import com.joyuna.delivery.domain.member.Member;
 import lombok.Getter;
 
 @Getter
-public class MemberResponseDto {
+public class MemberInfoResponse {
     private final String name;
     private final String loginId;
     private final String email;
     private final String tel;
 
-    public MemberResponseDto(Member member) {
+    public MemberInfoResponse(Member member) {
         this.name = member.getName();
         this.loginId = member.getLoginId();
         this.email = member.getEmail();
