@@ -14,18 +14,18 @@ public class MemberController {
     }
 
     @PostMapping
-    public ResponseEntity<MemberCreatedResponse> createMember(@RequestBody MemberCreateRequest memberCreateRequest) {
-        return ResponseEntity.ok().body(memberService.save(memberCreateRequest));
+    public ResponseEntity<MemberCreateResponse> createMember(@RequestBody MemberCreateRequest request) {
+        return ResponseEntity.ok().body(memberService.createMember(request));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MemberInfoResponse> findById(@PathVariable long id) {
-        return ResponseEntity.ok().body(memberService.findById(id));
+    public ResponseEntity<MemberInfoResponse> getMember(@PathVariable long id) {
+        return ResponseEntity.ok().body(memberService.getMember(id));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<MemberUpdateResponse> updateById(@RequestBody MemberUpdateRequest memberUpdateRequest) {
-        return ResponseEntity.ok().body(memberService.update(memberUpdateRequest));
+    public ResponseEntity<MemberUpdateResponse> updateMember(@RequestBody MemberUpdateRequest request) {
+        return ResponseEntity.ok().body(memberService.updateMember(request));
     }
 
     @DeleteMapping("/{id}")

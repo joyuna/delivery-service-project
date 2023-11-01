@@ -12,23 +12,23 @@ public class MemberService {
     }
 
     @Transactional
-    public MemberCreatedResponse save(MemberCreateRequest memberCreateRequest) {
-        Member member = memberRepository.save(memberCreateRequest.toEntity());
-        return new MemberCreatedResponse(member);
+    public MemberCreateResponse createMember(MemberCreateRequest request) {
+        Member member = memberRepository.save(request.toEntity());
+        return new MemberCreateResponse(member);
     }
 
     @Transactional
-    public MemberInfoResponse findById(long id) {
+    public MemberInfoResponse getMember(long id) {
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + id));
         return new MemberInfoResponse(member);
     }
 
     @Transactional
-    public MemberUpdateResponse update(MemberUpdateRequest memberUpdateRequest) {
-        Member member = memberRepository.findById(memberUpdateRequest.getId())
-                .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + memberUpdateRequest.getId()));
-        member.updateInfo(memberUpdateRequest);
+    public MemberUpdateResponse updateMember(MemberUpdateRequest request) {
+        Member member = memberRepository.findById(request.getId())
+                .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + request.getId()));
+        member.updateMember(request);
         return new MemberUpdateResponse(member);
     }
 

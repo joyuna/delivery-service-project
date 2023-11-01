@@ -31,13 +31,13 @@ public class ItemController {
     }
 
     @PostMapping
-    public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemCreateRequestDto itemCreateRequestDto) {
-        return ResponseEntity.ok().body(itemService.save(itemCreateRequestDto));
+    public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemCreateRequestDto request) {
+        return ResponseEntity.ok().body(itemService.save(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ItemResponseDto> updateById(@PathVariable long id, @RequestBody ItemUpdateRequestDto itemUpdateRequestDto) {
-        return ResponseEntity.ok().body(itemService.update(id, itemUpdateRequestDto));
+    public ResponseEntity<ItemResponseDto> updateById(@PathVariable long id, @RequestBody ItemUpdateRequestDto request) {
+        return ResponseEntity.ok().body(itemService.update(id, request));
     }
 
     @DeleteMapping("/{id}")

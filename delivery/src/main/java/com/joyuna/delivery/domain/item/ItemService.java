@@ -33,16 +33,16 @@ public class ItemService {
         return itemRepository.findAll().stream().map(ItemResponseDto::new).collect(Collectors.toList());
     }
 
-    public ItemResponseDto save(ItemCreateRequestDto itemCreateRequestDto) {
-        Item item = itemRepository.save(itemCreateRequestDto.toEntity());
+    public ItemResponseDto save(ItemCreateRequestDto request) {
+        Item item = itemRepository.save(request.toEntity());
         return new ItemResponseDto(item);
     }
 
     @Transactional
-    public ItemResponseDto update(long id, ItemUpdateRequestDto itemUpdateRequestDto) {
+    public ItemResponseDto update(long id, ItemUpdateRequestDto request) {
         Item item = itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + id));
-        item.update(ItemCategory.valueOf(itemUpdateRequestDto.getCategory()), itemUpdateRequestDto.getName(), itemUpdateRequestDto.getPrice(), itemUpdateRequestDto.getStock(), itemUpdateRequestDto.getSaleStatus());
+        item.update(ItemCategory.valueOf(request.getCategory()), request.getName(), request.getPrice(), request.getStock(), request.getSaleStatus());
         return new ItemResponseDto(item);
     }
 
