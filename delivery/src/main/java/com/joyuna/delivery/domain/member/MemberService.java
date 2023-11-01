@@ -31,4 +31,11 @@ public class MemberService {
         member.updateInfo(memberUpdateRequest);
         return new MemberUpdateResponse(member);
     }
+
+    @Transactional
+    public void changeToDelete(MemberDeleteRequest request) {
+        Member member = memberRepository.findById(request.getId())
+                .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + request.getId()));
+        member.changeToDelete();
+    }
 }

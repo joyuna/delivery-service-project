@@ -27,4 +27,9 @@ public class MemberController {
     public ResponseEntity<MemberUpdateResponse> updateById(@RequestBody MemberUpdateRequest memberUpdateRequest) {
         return ResponseEntity.ok().body(memberService.update(memberUpdateRequest));
     }
+
+    @DeleteMapping("/{id}")
+    public void changeToDelete(@RequestBody MemberDeleteRequest request) {
+        memberService.changeToDelete(request);
+    }
 }

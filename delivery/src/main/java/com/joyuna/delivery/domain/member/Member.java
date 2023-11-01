@@ -1,6 +1,7 @@
 package com.joyuna.delivery.domain.member;
 
 import com.joyuna.delivery.domain.common.BaseTimeEntity;
+import com.joyuna.delivery.domain.member.dto.MemberDeleteRequest;
 import com.joyuna.delivery.domain.member.dto.MemberUpdateRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -54,5 +55,9 @@ public class Member extends BaseTimeEntity {
         this.loginPw = memberUpdateRequest.getLoginPw();
         this.email = memberUpdateRequest.getEmail();
         this.tel = memberUpdateRequest.getTel();
+    }
+
+    public void changeToDelete() {
+        this.deletedYn = "Y";
     }
 }
