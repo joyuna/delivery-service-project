@@ -1,8 +1,6 @@
 package com.joyuna.delivery.domain.member;
 
-import com.joyuna.delivery.domain.member.dto.MemberCreateRequest;
-import com.joyuna.delivery.domain.member.dto.MemberCreatedResponse;
-import com.joyuna.delivery.domain.member.dto.MemberInfoResponse;
+import com.joyuna.delivery.domain.member.dto.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,5 +21,10 @@ public class MemberController {
     @GetMapping("/{id}")
     public ResponseEntity<MemberInfoResponse> findById(@PathVariable long id) {
         return ResponseEntity.ok().body(memberService.findById(id));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<MemberUpdateResponse> updateById(@RequestBody MemberUpdateRequest memberUpdateRequest) {
+        return ResponseEntity.ok().body(memberService.update(memberUpdateRequest));
     }
 }
