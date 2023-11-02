@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/members")
 public class MemberController {
-    private MemberService memberService;
+    private final MemberService memberService;
 
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
@@ -19,8 +19,8 @@ public class MemberController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MemberInfoResponse> getMember(@PathVariable long id) {
-        return ResponseEntity.ok().body(memberService.getMember(id));
+    public ResponseEntity<MemberInfoResponse> getOne(@PathVariable long id) {
+        return ResponseEntity.ok().body(memberService.getOne(id));
     }
 
     @PatchMapping("/{id}")

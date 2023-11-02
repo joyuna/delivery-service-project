@@ -9,18 +9,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-public class OrderResponseDto {
-    private final Long orderId;
-    private final List<OrderItem> orderItemList;
-    private final Integer totalPrice;
-//    private final String receiverName;
-    private final String receiverTel;
-    private final String receiverAddress;
-    private final OrderStatus orderStatus;
-    private final LocalDateTime createDate;
-    private final LocalDateTime modifiedDate;
+public class OrderCreateResponse {
+    private Long orderId;
+    private List<OrderItem> orderItemList;
+    private Integer totalPrice;
+    private String receiverTel;
+    private String receiverAddress;
+    private OrderStatus orderStatus;
+    private LocalDateTime createDate;
+    private LocalDateTime modifiedDate;
 
-    public OrderResponseDto(Order order) {
+    public OrderCreateResponse(Order order) {
         this.orderId = order.getId();
         this.orderItemList = order.getOrderItemList();
 
@@ -30,7 +29,6 @@ public class OrderResponseDto {
         }
 
         this.totalPrice = totalOrderPrice;
-//        this.receiverName = order.getReceiverName();
         this.receiverTel = order.getReceiverTel();
         this.receiverAddress = order.getReceiverAddress();
         this.orderStatus = order.getOrderStatus();

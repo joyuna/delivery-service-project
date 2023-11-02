@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MemberService {
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
@@ -17,8 +17,8 @@ public class MemberService {
         return new MemberCreateResponse(member);
     }
 
-    @Transactional
-    public MemberInfoResponse getMember(long id) {
+    @Transactional(readOnly = true)
+    public MemberInfoResponse getOne(long id) {
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + id));
         return new MemberInfoResponse(member);

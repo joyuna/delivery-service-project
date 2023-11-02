@@ -22,6 +22,10 @@ public class Order extends BaseTimeEntity {
     @Column(name = "order_id",updatable = false)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     @Column(nullable = false)
     private String receiverTel;
 
@@ -35,10 +39,6 @@ public class Order extends BaseTimeEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItemList = new ArrayList<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
 
     @Builder
     public Order(Member member, String receiverTel, String receiverAddress, List<OrderItem> orderItemList) {

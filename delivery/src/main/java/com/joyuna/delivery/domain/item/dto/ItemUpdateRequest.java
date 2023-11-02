@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemUpdateRequestDto {
+public class ItemUpdateRequest {
     private String category;
     private String name;
     private Integer price;

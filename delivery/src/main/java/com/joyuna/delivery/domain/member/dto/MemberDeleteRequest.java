@@ -1,8 +1,12 @@
 package com.joyuna.delivery.domain.member.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberDeleteRequest {
     private Long id;
     private String loginId;

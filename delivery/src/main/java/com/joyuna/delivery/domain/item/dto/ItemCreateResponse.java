@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class ItemResponseDto {
+public class ItemCreateResponse {
     private final Long id;
     private final ItemCategory category;
     private final String name;
@@ -18,7 +18,7 @@ public class ItemResponseDto {
     private final LocalDateTime createdDate;
     private final LocalDateTime modifiedDate;
 
-    public ItemResponseDto(Item item) {
+    public ItemCreateResponse(Item item) {
         this.id = item.getId();
         this.category = item.getCategory();
         this.name = item.getName();

@@ -1,13 +1,10 @@
 package com.joyuna.delivery.domain.item;
 
-import com.joyuna.delivery.domain.item.dto.ItemCreateRequestDto;
-import com.joyuna.delivery.domain.item.dto.ItemResponseDto;
-import com.joyuna.delivery.domain.item.dto.ItemUpdateRequestDto;
+import com.joyuna.delivery.domain.item.dto.*;
 import com.joyuna.delivery.domain.order.OrderItem;
-import com.joyuna.delivery.domain.order.dto.OrderItemRequestDto;
-import com.joyuna.delivery.domain.order.dto.PriceRequestDto;
-import com.joyuna.delivery.domain.order.dto.PriceResponseDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.joyuna.delivery.domain.order.dto.OrderItemAddRequest;
+import com.joyuna.delivery.domain.order.dto.TotalPriceRequest;
+import com.joyuna.delivery.domain.order.dto.ItemPriceResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,43 +14,49 @@ import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
-    private ItemRepository itemRepository;
-    @Autowired
+    private final ItemRepository itemRepository;
+
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 
-    public ItemResponseDto findById(long id) {
+    @Transactional
+    public ItemCreateResponse createItem(ItemCreateRequest request) {
+        Item item = itemRepository.save(request.toEntity());
+        return new ItemCreateResponse(item);
+    }
+
+    @Transactional(readOnly = true)
+    public ItemInfoResponse getOne(long id) {
         Item item = itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + id));
-        return new ItemResponseDto(item);
+        return new ItemInfoResponse(item);
     }
 
-    public List<ItemResponseDto> findAll() {
-        return itemRepository.findAll().stream().map(ItemResponseDto::new).collect(Collectors.toList());
-    }
-
-    public ItemResponseDto save(ItemCreateRequestDto request) {
-        Item item = itemRepository.save(request.toEntity());
-        return new ItemResponseDto(item);
+    @Transactional(readOnly = true)
+    public List<ItemInfoResponse> getAll() {
+        return itemRepository.findAll().stream().map(ItemInfoResponse::new).collect(Collectors.toList());
     }
 
     @Transactional
-    public ItemResponseDto update(long id, ItemUpdateRequestDto request) {
+    public ItemUpdateResponse updateItem(long id, ItemUpdateRequest request) {
         Item item = itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + id));
         item.update(ItemCategory.valueOf(request.getCategory()), request.getName(), request.getPrice(), request.getStock(), request.getSaleStatus());
-        return new ItemResponseDto(item);
+        return new ItemUpdateResponse(item);
     }
 
-    public void deleteById(long id) {
+    @Transactional
+    public void deleteOne(long id) {
         itemRepository.deleteById(id);
     }
 
+    @Transactional
     public void deleteAll() {
         itemRepository.deleteAll();
     }
 
+    @Transactional
     public int getTotalPrice(List<OrderItem> orderItemList) {
         List<Long> itemIdList = new ArrayList<>();
         for(OrderItem orderItem : orderItemList) {
@@ -72,16 +75,20 @@ public class ItemService {
         return totalPrice;
     }
 
-    public List<PriceResponseDto> getPriceOrderItem(PriceRequestDto priceRequestDto) {
+    @Transactional
+    public List<ItemPriceResponse> getPriceOrderItem(TotalPriceRequest totalPriceRequest) {
         List<Long> orderItemIdList = new ArrayList<>();
-        for(OrderItemRequestDto orderItemRequestDto : priceRequestDto.getOrderItemListDto()) {
-            orderItemIdList.add(orderItemRequestDto.getItemId());
+
+        for(OrderItemAddRequest orderItemAddRequest : totalPriceRequest.getOrderItemList()) {
+            orderItemIdList.add(orderItemAddRequest.getItemId());
         }
+
         List<Item> itemList = itemRepository.findByIdIn(orderItemIdList);
-        List<PriceResponseDto> priceListResponseDto = new ArrayList<>();
+        List<ItemPriceResponse> ItemPriceListResponse = new ArrayList<>();
+
         for(Item item : itemList) {
-            priceListResponseDto.add(new PriceResponseDto(item.getId(), item.getPrice()));
+            ItemPriceListResponse.add(new ItemPriceResponse(item.getId(), item.getPrice()));
         }
-        return priceListResponseDto;
+        return ItemPriceListResponse;
     }
 }

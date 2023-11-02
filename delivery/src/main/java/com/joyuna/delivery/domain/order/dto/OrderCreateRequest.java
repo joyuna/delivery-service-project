@@ -13,29 +13,31 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderRequestDto {
-//    private Member member;
-
-    private List<OrderItemRequestDto> orderItemListDto;
+public class OrderCreateRequest {
+    private Long memberId;
+    private List<OrderItemAddRequest> orderItemList;
     private String receiverTel;
     private String receiverAddress;
 
-    public Order toEntity(List<PriceResponseDto> priceListResponseDto) {
+    public Order toEntity(List<ItemPriceResponse> itemPriceListResponse) {
         List<OrderItem> orderItemList = new ArrayList<>();
+
         Order order = Order.builder()
-//                .receiverName(receiverName)
+                .member(new Member(memberId))
                 .receiverTel(receiverTel)
                 .receiverAddress(receiverAddress)
                 .build();
-        for(OrderItemRequestDto orderItemDto : orderItemListDto) {
-            for(PriceResponseDto priceResponseDto : priceListResponseDto) {
-                if(orderItemDto.getItemId().equals(priceResponseDto.getItemId())) {
-                    OrderItem orderItem = orderItemDto.toEntity(order, priceResponseDto.getPrice());
+
+        for(OrderItemAddRequest orderItemAddRequest : this.orderItemList) {
+            for(ItemPriceResponse itemPriceResponse : itemPriceListResponse) {
+                if(orderItemAddRequest.getItemId().equals(itemPriceResponse.getItemId())) {
+                    OrderItem orderItem = orderItemAddRequest.toEntity(order, itemPriceResponse.getPrice());
                     orderItemList.add(orderItem);
                 }
             }
         }
         order.setOrderItemList(orderItemList);
+
         return order;
     }
 }

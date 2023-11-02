@@ -10,7 +10,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class PriceRequestDto {
-    private List<OrderItemRequestDto> orderItemListDto;
+public class TotalPriceRequest {
+    private List<OrderItemAddRequest> orderItemList;
 }
