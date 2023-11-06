@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
 
 @Getter
 public class ItemUpdateResponse {
-    private Long id;
-    private ItemCategory category;
-    private String name;
-    private Integer price;
-    private Integer stock;
-    private ItemSaleStatus saleStatus;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
+    private final Long id;
+    private final ItemCategory category;
+    private final String name;
+    private final Integer price;
+    private final Integer stock;
+    private final ItemSaleStatus saleStatus;
+    private final LocalDateTime createdDate;
+    private final LocalDateTime modifiedDate;
 
     public ItemUpdateResponse(Item item) {
         this.id = item.getId();

@@ -10,14 +10,14 @@ import java.util.List;
 
 @Getter
 public class OrderCreateResponse {
-    private Long orderId;
-    private List<OrderItem> orderItemList;
-    private Integer totalPrice;
-    private String receiverTel;
-    private String receiverAddress;
-    private OrderStatus orderStatus;
-    private LocalDateTime createDate;
-    private LocalDateTime modifiedDate;
+    private final Long orderId;
+    private final List<OrderItem> orderItemList;
+    private final Integer totalPrice;
+    private final String receiverTel;
+    private final String receiverAddress;
+    private final OrderStatus orderStatus;
+    private final LocalDateTime createDate;
+    private final LocalDateTime modifiedDate;
 
     public OrderCreateResponse(Order order) {
         this.orderId = order.getId();

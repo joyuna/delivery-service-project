@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 public class MemberUpdateResponse {
-    private String name;
-    private String loginId;
-    private String email;
-    private String tel;
+    private final String name;
+    private final String loginId;
+    private final String email;
+    private final String tel;
 
     public MemberUpdateResponse(Member member) {
         this.name = member.getName();
