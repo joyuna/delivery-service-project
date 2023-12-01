@@ -13,6 +13,7 @@ public class MemberService {
 
     @Transactional
     public MemberCreateResponse createMember(MemberCreateRequest request) {
+        checkDuplicateLoginId(request.getLoginId());
         Member member = memberRepository.save(request.toEntity());
         return new MemberCreateResponse(member);
     }
@@ -37,5 +38,12 @@ public class MemberService {
         Member member = memberRepository.findById(request.getId())
                 .orElseThrow(() -> new IllegalArgumentException("조회 결과 없음 : " + request.getId()));
         member.changeToDelete();
+    }
+
+    @Transactional
+    public void checkDuplicateLoginId(String loginId) {
+        if (memberRepository.existsByLoginId(loginId) == true) {
+            throw new IllegalArgumentException(loginId + "는 이미 사용 중인 아이디입니다.");
+        }
     }
 }
