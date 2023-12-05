@@ -15,9 +15,6 @@ public class LoginService {
 
     public LoginMemberCheckResponse login(final LoginRequest request) {
         LoginMemberCheckRequest loginMemberCheckRequest = new LoginMemberCheckRequest(request.getLoginId(), request.getLoginPw());
-
-        LoginMemberCheckResponse loginMember = memberService.getExistingMember(loginMemberCheckRequest);
-
-        return loginMember;
+        return memberService.getExistingMember(loginMemberCheckRequest);
     }
 }

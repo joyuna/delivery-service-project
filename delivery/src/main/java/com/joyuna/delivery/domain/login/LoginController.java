@@ -25,15 +25,11 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
             throw new IllegalArgumentException("입력한 정보를 확인해주세요.");
         }
-        LoginMemberCheckResponse loginMember = loginService.login(request);
 
-        if (loginMember == null) {
-            throw new IllegalArgumentException("존재하지 않는 회원입니다.");
-        }
+        LoginMemberCheckResponse loginMember = loginService.login(request);
 
         HttpSession session = httpServletRequest.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-
         return ResponseEntity.ok().body(loginMember);
     }
 }
