@@ -123,7 +123,15 @@
 | 생성일        | createdDate      | 생성일입니다.          |
 | 수정일        | modifiedDate     | 수정일입니다.          |
 
-### 음식(item) API
+### 회원(Member) API
+| 요청       | HTTP Method | API                                    |
+|:---------|:------------|:---------------------------------------|
+| 회원 단일 조회 | `GET`       | https://localhost:8080/members/{id}    |
+| 회원 등록    | `POST`      | https://localhost:8080/members         |
+| 회원 수정    | `PATCH`     | https://localhost:8080/members/{id}    |
+| 회원 개별 삭제 | `DELETE`    | https://localhost:8080/members/{id}    |
+
+### 음식(Item) API
 | 요청         | HTTP Method | API                               |
 |:-----------|:------------|:----------------------------------|
 | 음식 전체 조회   | `GET`       | https://localhost:8080/items      |
