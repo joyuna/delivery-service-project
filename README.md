@@ -11,7 +11,12 @@
 │   │               ├── DeliveryApplication.java
 │   │               └── domain
 │   │                   ├── common
-│   │                   │   └── BaseTimeEntity.java
+│   │                   │   ├── BaseTimeEntity.java
+│   │                   │   └── web
+│   │                   │       ├── WebConfig.java
+│   │                   │       └── interceptor
+│   │                   │           ├── LogInterceptor.java
+│   │                   │           └── LoginCheckInterceptor.java
 │   │                   ├── item
 │   │                   │   ├── Item.java
 │   │                   │   ├── ItemCategory.java
@@ -25,12 +30,20 @@
 │   │                   │       ├── ItemInfoResponse.java
 │   │                   │       ├── ItemUpdateRequest.java
 │   │                   │       └── ItemUpdateResponse.java
+│   │                   ├── login
+│   │                   │   ├── LoginController.java
+│   │                   │   ├── LoginService.java
+│   │                   │   ├── SessionConst.java
+│   │                   │   └── dto
+│   │                   │       ├── LoginMemberCheckRequest.java
+│   │                   │       └── LoginRequest.java
 │   │                   ├── member
 │   │                   │   ├── Member.java
 │   │                   │   ├── MemberController.java
 │   │                   │   ├── MemberRepository.java
 │   │                   │   ├── MemberService.java
 │   │                   │   └── dto
+│   │                   │       ├── LoginMemberCheckResponse.java
 │   │                   │       ├── MemberCreateRequest.java
 │   │                   │       ├── MemberCreateResponse.java
 │   │                   │       ├── MemberDeleteRequest.java
@@ -110,15 +123,6 @@
 | 생성일        | createdDate      | 생성일입니다.          |
 | 수정일        | modifiedDate     | 수정일입니다.          |
 
-### 회원(member) API
-| 요청       | HTTP Method | API                                   |
-|:---------|:------------|:--------------------------------------|
-| 회원 전체 조회 | `GET`       | https://localhost:8080/members        |
-| 회원 단일 조회 | `GET`       | https://localhost:8080/members/{id}   |
-| 회원 등록    | `POST`      | https://localhost:8080/members        |
-| 회원 정보 수정 | `PATCH`     | https://localhost:8080/members/{id}   |
-| 회원 탈퇴    | `DELETE`    | https://localhost:8080/members/{id}   |
-
 ### 음식(item) API
 | 요청         | HTTP Method | API                               |
 |:-----------|:------------|:----------------------------------|
@@ -137,16 +141,6 @@
 | 주문 거절하기     | `PATCH`     | https://localhost:8080/orders/{id}          |
 | 주문 내역 전체 조회 | `GET`       | https://localhost:8080/orders               |
 | 주문 내역 단일 조회 | `GET`       | https://localhost:8080/orders/{id}          |
-
-### 음식(item) + 식당(shop) API
-| 요청              | HTTP Method   | API                                          |
-|:----------------|:--------------|:---------------------------------------------|
-| 한 식당의 음식 전체 조회  | `GET`         | https://localhost:8080/shops/{id}/items      |
-| 한 식당의 음식 단일 조회  | `GET`         | https://localhost:8080/shops/{id}/items/{id} |
-| 한 식당의 음식 등록     | `POST`        | https://localhost:8080/shops/{id}/items      |
-| 한 식당의 음식 수정     | `PATCH`       | https://localhost:8080/shops/{id}/items/{id} |
-| 한 식당의 음식 전체 삭제  | `DELETE`      | https://localhost:8080/shops/{id}/items      |
-| 한 식당의 음식 개별 삭제  | `DELETE`      | https://localhost:8080/shops/{id}/items/{id} |
 
 ### 음식 API 클래스 다이어그램
 <img src="./img/음식API_클래스다이어그램.drawio.png" width="60%" height="60%"/>
