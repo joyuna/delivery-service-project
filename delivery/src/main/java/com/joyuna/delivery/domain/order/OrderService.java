@@ -1,19 +1,16 @@
 package com.joyuna.delivery.domain.order;
 
 import com.joyuna.delivery.domain.item.ItemService;
-import com.joyuna.delivery.domain.order.dto.OrderRequestDto;
-import com.joyuna.delivery.domain.order.dto.OrderResponseDto;
-import com.joyuna.delivery.domain.order.dto.PriceRequestDto;
-import com.joyuna.delivery.domain.order.dto.PriceResponseDto;
+import com.joyuna.delivery.domain.order.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class OrderService {
-    private OrderRepository orderRepository;
-    private ItemService itemService;
-    private OrderItemRepository orderItemRepository;
+    private final OrderRepository orderRepository;
+    private final ItemService itemService;
+    private final OrderItemRepository orderItemRepository;
 
     public OrderService(OrderRepository orderRepository, ItemService itemService, OrderItemRepository orderItemRepository) {
         this.orderRepository = orderRepository;
@@ -21,14 +18,16 @@ public class OrderService {
         this.orderItemRepository = orderItemRepository;
     }
 
-    public OrderResponseDto save(OrderRequestDto orderRequestDto) {
-        PriceRequestDto priceRequestDto = new PriceRequestDto(orderRequestDto.getOrderItemListDto());
-        List<PriceResponseDto> priceListResponseDto = itemService.getPriceOrderItem(priceRequestDto);
-        Order newOrder = orderRequestDto.toEntity(priceListResponseDto);
-        
-        orderRepository.save(newOrder);
-        orderItemRepository.saveAll(newOrder.getOrderItemList());
+    public OrderCreateResponse createOrder(OrderCreateRequest orderCreateRequest) {
 
-        return new OrderResponseDto(newOrder);
+        TotalPriceRequest totalPriceRequest = new TotalPriceRequest(orderCreateRequest.getOrderItemList());
+
+        List<ItemPriceResponse> ItemPriceListResponse =  itemService.getPriceOrderItem(totalPriceRequest);
+        Order order = orderCreateRequest.toEntity(ItemPriceListResponse);
+
+        orderRepository.save(order);
+        orderItemRepository.saveAll(order.getOrderItemList());
+
+        return new OrderCreateResponse(order);
     }
 }

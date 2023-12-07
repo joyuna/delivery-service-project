@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemCreateRequestDto {
+public class ItemCreateRequest {
     private Long id;
     private String category;
     private String name;

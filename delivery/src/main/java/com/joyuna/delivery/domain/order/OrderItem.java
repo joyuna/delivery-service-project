@@ -18,12 +18,6 @@ public class OrderItem extends BaseTimeEntity {
     @Column(name = "order_item_id", updatable = false)
     private Long id;
 
-    @Column(nullable = false)
-    private Integer count;
-
-    @Column(nullable = false)
-    private Integer orderPrice;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
@@ -31,6 +25,12 @@ public class OrderItem extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
+
+    @Column(nullable = false)
+    private Integer count;
+
+    @Column(nullable = false)
+    private Integer orderPrice;
 
     @Builder
     public OrderItem(Integer count, Integer orderPrice, Item item, Order order) {

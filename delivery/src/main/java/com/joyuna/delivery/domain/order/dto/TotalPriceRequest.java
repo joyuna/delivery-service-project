@@ -3,11 +3,13 @@ package com.joyuna.delivery.domain.order.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.List;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class PriceResponseDto {
-    private Long itemId;
-    private Integer price;
+@AllArgsConstructor
+public class TotalPriceRequest {
+    private List<OrderItemAddRequest> orderItemList;
 }

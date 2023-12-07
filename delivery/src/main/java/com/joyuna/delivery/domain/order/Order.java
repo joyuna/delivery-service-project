@@ -2,6 +2,7 @@ package com.joyuna.delivery.domain.order;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.joyuna.delivery.domain.common.BaseTimeEntity;
+import com.joyuna.delivery.domain.member.Member;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,8 +22,9 @@ public class Order extends BaseTimeEntity {
     @Column(name = "order_id",updatable = false)
     private Long id;
 
-    @Column(nullable = false)
-    private String receiverName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @Column(nullable = false)
     private String receiverTel;
@@ -39,8 +41,8 @@ public class Order extends BaseTimeEntity {
     private List<OrderItem> orderItemList = new ArrayList<>();
 
     @Builder
-    public Order(String receiverName, String receiverTel, String receiverAddress, List<OrderItem> orderItemList) {
-        this.receiverName = receiverName;
+    public Order(Member member, String receiverTel, String receiverAddress, List<OrderItem> orderItemList) {
+        this.member = member;
         this.receiverTel = receiverTel;
         this.receiverAddress = receiverAddress;
         this.orderStatus = OrderStatus.ORDERED;

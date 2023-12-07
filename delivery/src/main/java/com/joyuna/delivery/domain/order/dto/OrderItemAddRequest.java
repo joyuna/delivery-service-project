@@ -11,8 +11,7 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class OrderItemRequestDto {
+public class OrderItemAddRequest {
     private Long itemId;
     private Integer count;
 

@@ -1,48 +1,44 @@
 package com.joyuna.delivery.domain.item;
 
-import com.joyuna.delivery.domain.item.dto.ItemCreateRequestDto;
-import com.joyuna.delivery.domain.item.dto.ItemResponseDto;
-import com.joyuna.delivery.domain.item.dto.ItemUpdateRequestDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.joyuna.delivery.domain.item.dto.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/items")
 public class ItemController {
-    private ItemService itemService;
-    @Autowired
+    private final ItemService itemService;
+
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
 
+    @PostMapping
+    public ResponseEntity<ItemCreateResponse> createItem(@RequestBody ItemCreateRequest request) {
+        return ResponseEntity.ok().body(itemService.createItem(request));
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<ItemResponseDto> findById(@PathVariable long id) {
-        return ResponseEntity.ok().body(itemService.findById(id));
+    public ResponseEntity<ItemInfoResponse> getOne(@PathVariable long id) {
+        return ResponseEntity.ok().body(itemService.getOne(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemResponseDto>> findAll() {
-        List<ItemResponseDto> items = itemService.findAll();
+    public ResponseEntity<List<ItemInfoResponse>> getAll() {
+        List<ItemInfoResponse> items = itemService.getAll();
         return ResponseEntity.ok().body(items);
     }
 
-    @PostMapping
-    public ResponseEntity<ItemResponseDto> createItem(@RequestBody ItemCreateRequestDto itemCreateRequestDto) {
-        return ResponseEntity.ok().body(itemService.save(itemCreateRequestDto));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<ItemResponseDto> updateById(@PathVariable long id, @RequestBody ItemUpdateRequestDto itemUpdateRequestDto) {
-        return ResponseEntity.ok().body(itemService.update(id, itemUpdateRequestDto));
+    @PatchMapping("/{id}")
+    public ResponseEntity<ItemUpdateResponse> updateItem(@PathVariable long id, @RequestBody ItemUpdateRequest request) {
+        return ResponseEntity.ok().body(itemService.updateItem(id, request));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable long id) {
-        itemService.deleteById(id);
+    public ResponseEntity<Void> deleteOne(@PathVariable long id) {
+        itemService.deleteOne(id);
         return ResponseEntity.ok().build();
     }
 
